@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getReviewById } from "../api";
+import { getReviewById } from "../utils/api";
 import CommentsList from "./CommentsList";
 
 const ReviewInfo = () => {

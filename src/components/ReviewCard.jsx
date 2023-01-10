@@ -10,9 +10,7 @@ const ReviewCard = ({ review }) => {
       </div>
 
       <h3 className="reviewTitle">
-        {review.title.length > 50
-          ? `${review.title.slice(0, 20)}...`
-          : review.title}
+        {review.title}
       </h3>
     </div>
   );
