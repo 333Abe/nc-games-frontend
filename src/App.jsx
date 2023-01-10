@@ -8,15 +8,13 @@ import ReviewInfo from "./components/ReviewInfo";
 import LogIn from "./components/LogIn";
 
 function App() {
-  const [reviews, setReviews] = useState([])
-
   return (
     <div className="App">
       <Header />
       <NavBar />
       <Routes>
-        <Route path="/" element={<ReviewsList reviews={reviews} setReviews={setReviews}/>} />
-        <Route path="/reviews" element={<ReviewsList reviews={reviews} setReviews={setReviews}/>} />
+        <Route path="/" element={<ReviewsList />} />
+        <Route path="/reviews" element={<ReviewsList />} />
         <Route path="/reviews/:review_id" element={<ReviewInfo />} />
         <Route path="/log-in" element={<LogIn />} />
       </Routes>
