@@ -44,7 +44,7 @@ const ReviewInfo = () => {
 
       <h2>{review.title}</h2>
       <p>{review.review_body}</p>
-      <CommentsList />
+      <CommentsList review_id={review_id} />
     </div>
   );
 };
