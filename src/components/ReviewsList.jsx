@@ -1,14 +1,19 @@
+import { useEffect } from "react";
 import ReviewCard from "./ReviewCard";
+import { getReviews } from "../api";
 
-const ReviewsList = () => {
+const ReviewsList = ({ reviews, setReviews }) => {
+  useEffect(() => {
+    getReviews().then((data) => {
+      setReviews(data);
+    });
+  }, []);
+
   return (
-    <div>
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
-      <ReviewCard />
+    <div className="ReviewsList">
+      {reviews.map((review) => {
+        return <ReviewCard key={review.review_id} review={review} />;
+      })}
     </div>
   );
 };
