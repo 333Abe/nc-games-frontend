@@ -149,6 +149,17 @@ select {
 
 /* End ReviewsList styles */
 
+.ReviewInfo_img_container {
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.ReviewInfo_img {
+  object-fit: fill;
+  max-width: 500px;
+  max-height: 500px;
+}
+
 .error {
   text-align: center;
 }
