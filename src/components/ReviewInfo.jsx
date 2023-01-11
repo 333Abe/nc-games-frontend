@@ -38,7 +38,7 @@ const ReviewInfo = () => {
     setReview({ ...review, votes: review.votes + 1 });
     // interact with the server
     patchReviewVote(review_id, 1).catch((err) => {
-      setReview({ ...review, votes: review.votes - 1 });
+      setReview({ ...review, votes: review.votes });
     });
   };
 
@@ -47,7 +47,7 @@ const ReviewInfo = () => {
     setReview({ ...review, votes: review.votes - 1 });
     // interact with the server
     patchReviewVote(review_id, -1).catch((err) => {
-      setReview({ ...review, votes: review.votes + 1 });
+      setReview({ ...review, votes: review.votes });
     });
   };
 
