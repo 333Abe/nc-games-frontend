@@ -3,7 +3,7 @@ const CommentCard = ({ author, body, votes }) => {
     <div className="CommentCard">
       <h3>{author} says:</h3>
       <p>{body}</p>
-      <p>votes: {votes}</p>
+      <span aria-label="votes for this comment">{votes}</span>
     </div>
   );
 };

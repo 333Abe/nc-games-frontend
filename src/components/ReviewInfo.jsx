@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getReviewById } from "../utils/api";
 import CommentsList from "./CommentsList";
 import { Error } from "./Error";
+import { patchReviewVote } from "../utils/api";
 
 const ReviewInfo = () => {
   const [review, setReview] = useState({});
@@ -32,6 +33,24 @@ const ReviewInfo = () => {
     return <Error />;
   }
 
+  const upVote = (review_id) => {
+    // update votes optimistically
+    setReview({ ...review, votes: review.votes + 1 });
+    // interact with the server
+    patchReviewVote(review_id, 1).catch((err) => {
+      setReview({ ...review, votes: review.votes - 1 });
+    });
+  };
+
+  const downVote = (review_id) => {
+    // update votes optimistically
+    setReview({ ...review, votes: review.votes - 1 });
+    // interact with the server
+    patchReviewVote(review_id, -1).catch((err) => {
+      setReview({ ...review, votes: review.votes + 1 });
+    });
+  };
+
   return (
     <div className="container">
       <div className="ReviewInfo_img_container">
@@ -44,6 +63,12 @@ const ReviewInfo = () => {
 
       <h2>{review.title}</h2>
       <p>{review.review_body}</p>
+      <span>
+        <button onClick={() => upVote(review_id)}>&#x1F44D;</button>
+        <span aria-label="votes for this review"> {review.votes} </span>
+        <button onClick={() => downVote(review_id)}>&#x1F44E;</button>
+      </span>
+
       <CommentsList review_id={review_id} />
     </div>
   );
