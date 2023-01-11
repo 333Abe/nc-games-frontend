@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { getUsers } from "../utils/api";
 
-const LogIn = ({ setUser }) => {
+const LogIn = ({ user, setUser }) => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useState(() => {
+  useEffect(() => {
     setIsLoading(true);
     getUsers().then((data) => {
       setUsers(data);
@@ -18,9 +18,32 @@ const LogIn = ({ setUser }) => {
   }
 
   return (
-    <div>
+    <main>
       <h2>log-in page</h2>
-    </div>
+      <select value={user} onChange={(e) => setUser(e.target.value)}>
+        {users.map((user) => {
+          return (
+            <option key={user.username} value={user.username}>
+              {user.username}
+            </option>
+          );
+        })}
+      </select>
+      <p>{user !== "" ? `` : `user is not logged in`}</p>
+      {users.map((selectedUser) => {
+        if (selectedUser.username === user)
+          return (
+            <section>
+              <p>Welcome back {selectedUser.name}</p>
+              <p>You're logged in as {selectedUser.username}</p>
+              <img
+                src={selectedUser.avatar_url}
+                alt={`${selectedUser} avatar`}
+              />
+            </section>
+          );
+      })}
+    </main>
   );
 };
 

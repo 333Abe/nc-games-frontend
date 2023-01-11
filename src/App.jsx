@@ -8,7 +8,7 @@ import LogIn from "./components/LogIn";
 import { useState } from "react";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
 
   return (
     <div className="App">
@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<ReviewsList />} />
         <Route path="/reviews" element={<ReviewsList />} />
         <Route path="/reviews/:review_id" element={<ReviewInfo />} />
-        <Route path="/log-in" element={<LogIn setUser={setUser}/>} />
+        <Route path="/log-in" element={<LogIn user={user} setUser={setUser}/>} />
       </Routes>
     </div>
   );
