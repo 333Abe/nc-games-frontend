@@ -30,3 +30,10 @@ export const patchReviewVote = (review_id, increment) => {
     return res.data.review;
   });
 };
+
+export const getUsers = () => {
+  return gamesApi.get(`/users`).then((res)=>{
+    console.log(res)
+    return res
+  })
+}
