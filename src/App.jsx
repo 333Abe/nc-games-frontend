@@ -17,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ReviewsList />} />
         <Route path="/reviews" element={<ReviewsList />} />
+        <Route path="/reviews/:category" element={<ReviewsList />} />
         <Route
           path="/reviews/:review_id"
           element={<ReviewInfo user={user} />}
