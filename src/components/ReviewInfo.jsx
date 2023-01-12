@@ -5,7 +5,7 @@ import CommentsList from "./CommentsList";
 import { Error } from "./Error";
 import { patchReviewVote } from "../utils/api";
 
-const ReviewInfo = () => {
+const ReviewInfo = ({ user }) => {
   const [review, setReview] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -38,7 +38,7 @@ const ReviewInfo = () => {
     setReview({ ...review, votes: review.votes + 1 });
     // interact with the server
     patchReviewVote(review_id, 1).catch((err) => {
-      setReview({ ...review, votes: review.votes - 1 });
+      setReview({ ...review, votes: review.votes });
     });
   };
 
@@ -47,7 +47,7 @@ const ReviewInfo = () => {
     setReview({ ...review, votes: review.votes - 1 });
     // interact with the server
     patchReviewVote(review_id, -1).catch((err) => {
-      setReview({ ...review, votes: review.votes + 1 });
+      setReview({ ...review, votes: review.votes });
     });
   };
 
@@ -69,7 +69,7 @@ const ReviewInfo = () => {
         <button onClick={() => downVote(review_id)}>&#x1F44E;</button>
       </span>
 
-      <CommentsList review_id={review_id} />
+      <CommentsList review_id={review_id} user={user} />
     </div>
   );
 };

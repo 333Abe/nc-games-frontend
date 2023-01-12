@@ -21,19 +21,19 @@ const LogIn = ({ user, setUser }) => {
     <main>
       <h2>log-in page</h2>
       <select value={user} onChange={(e) => setUser(e.target.value)}>
-        {users.map((user) => {
+        {users.map((user, index) => {
           return (
-            <option key={user.username} value={user.username}>
+            <option key={index} value={user.username}>
               {user.username}
             </option>
           );
         })}
       </select>
       <p>{user !== "" ? `` : `user is not logged in`}</p>
-      {users.map((selectedUser) => {
+      {users.map((selectedUser, index) => {
         if (selectedUser.username === user)
           return (
-            <section>
+            <section key={index}>
               <p>Welcome back {selectedUser.name}</p>
               <p>You're logged in as {selectedUser.username}</p>
               <img

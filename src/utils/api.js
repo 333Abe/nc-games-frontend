@@ -36,3 +36,12 @@ export const getUsers = () => {
     return res.data.users;
   });
 };
+
+export const postComment = (author, body, review_id) => {
+  const postBody = { author: author, body: body };
+  return gamesApi
+    .post(`/reviews/${review_id}/comments`, postBody)
+    .then((res) => {
+      return res.data.comment;
+    });
+};

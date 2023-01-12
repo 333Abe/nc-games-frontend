@@ -13,12 +13,18 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <NavBar user={user}/>
+      <NavBar user={user} />
       <Routes>
         <Route path="/" element={<ReviewsList />} />
         <Route path="/reviews" element={<ReviewsList />} />
-        <Route path="/reviews/:review_id" element={<ReviewInfo />} />
-        <Route path="/log-in" element={<LogIn user={user} setUser={setUser}/>} />
+        <Route
+          path="/reviews/:review_id"
+          element={<ReviewInfo user={user} />}
+        />
+        <Route
+          path="/log-in"
+          element={<LogIn user={user} setUser={setUser} />}
+        />
       </Routes>
     </div>
   );
