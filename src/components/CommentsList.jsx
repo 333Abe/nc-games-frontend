@@ -10,6 +10,7 @@ const CommentsList = ({ review_id, user }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setisError] = useState(false);
   const [noInternet, setNoInternet] = useState(false);
+  const [emptyComment, setEmptyComment] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -35,6 +36,7 @@ const CommentsList = ({ review_id, user }) => {
   const handleAddComment = (e) => {
     e.preventDefault();
     if (newComment !== "") {
+      setEmptyComment(false);
       postComment(user, newComment, review_id)
         .then((postedComment) => {
           setComments([postedComment, ...comments]);
@@ -45,6 +47,8 @@ const CommentsList = ({ review_id, user }) => {
           setNoInternet(true);
           console.log("error in handleAddComment");
         });
+    } else {
+      setEmptyComment(true);
     }
   };
 
@@ -67,6 +71,9 @@ const CommentsList = ({ review_id, user }) => {
             <button>Add comment</button>
             {noInternet ? (
               <p className="postingError">you can't post comments offline</p>
+            ) : null}
+            {emptyComment ? (
+              <p className="postingError">don't try posting empty comments!</p>
             ) : null}
           </form>
         )}
