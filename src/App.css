@@ -171,3 +171,18 @@ select {
 .postingError {
   color: red;
 }
+
+.sortContainer {
+  width: 100%;
+  height: 4%;
+}
+
+.sortIsHidden {
+  position: absolute;
+  top: 50px;
+  display: none;
+}
+
+.sortIsVisible {
+  background: rgb(26, 1, 116);
+}

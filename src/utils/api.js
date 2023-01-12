@@ -4,10 +4,12 @@ const gamesApi = axios.create({
   baseURL: "https://adrian-nc-games.onrender.com/api",
 });
 
-export const getReviews = () => {
-  return gamesApi.get(`/reviews`).then((res) => {
-    return res.data.reviews;
-  });
+export const getReviews = (sortBy, order) => {
+  return gamesApi
+    .get(`/reviews`, { params: { sort_by: sortBy, order: order } })
+    .then((res) => {
+      return res.data.reviews;
+    });
 };
 
 export const getReviewById = (review_id) => {

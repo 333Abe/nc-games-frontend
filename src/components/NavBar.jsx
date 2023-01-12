@@ -2,10 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCategories } from "../utils/api";
 
-const NavBar = ({ user }) => {
+const NavBar = ({ user, isSortVisible, setIsSortVisible }) => {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("All categories");
   const [isLoading, setIsLoading] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,11 +23,12 @@ const NavBar = ({ user }) => {
 
   const handleCategoryChange = (cat) => {
     setCategory(cat);
-    navigate(`/reviews/${cat}`);
+    navigate(`/reviews/categories/${cat}`);
   };
 
   return (
     <span className="container nav">
+      <button onClick={()=>{setIsSortVisible(!isSortVisible)}}>{isSortVisible ? `hide sort` : `show sort`}</button>
       <span>
         <select
           value={category}
