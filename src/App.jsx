@@ -6,6 +6,7 @@ import Sort from "./components/Sort";
 import ReviewsList from "./components/ReviewsList";
 import ReviewInfo from "./components/ReviewInfo";
 import LogIn from "./components/LogIn";
+import Error from "./components/Error";
 import { useState } from "react";
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           path="/log-in"
           element={<LogIn user={user} setUser={setUser} />}
         />
+        <Route path="/*" element={<Error />} />
       </Routes>
     </div>
   );

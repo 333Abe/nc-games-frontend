@@ -1,5 +1,5 @@
 import CommentCard from "./CommentCard";
-import { Error } from "./Error";
+import Error from "./Error";
 import { useEffect, useState } from "react";
 import { getCommentsByReviewId, postComment } from "../utils/api";
 import { Link } from "react-router-dom";

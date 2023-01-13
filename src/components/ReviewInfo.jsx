@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getReviewById } from "../utils/api";
 import CommentsList from "./CommentsList";
-import { Error } from "./Error";
+import Error from "./Error";
 import { patchReviewVote } from "../utils/api";
 
 const ReviewInfo = ({ user }) => {
@@ -20,6 +20,7 @@ const ReviewInfo = ({ user }) => {
         setIsLoading(false);
       })
       .catch((err) => {
+        console.log(err);
         setIsError(true);
         setIsLoading(false);
       });
@@ -30,7 +31,7 @@ const ReviewInfo = ({ user }) => {
   }
 
   if (isError) {
-    return <Error />;
+    return <Error msg="404: no review at this URL" />;
   }
 
   const upVote = (review_id) => {
