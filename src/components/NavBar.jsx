@@ -1,18 +1,22 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCategories } from "../utils/api";
 
 const NavBar = ({ user, isSortVisible, setIsSortVisible }) => {
-  const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState("All categories");
   const [isLoading, setIsLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
+  const { category } = useParams();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
     getCategories().then((data) => {
-      setCategories(data);
+      setCategories(
+        data.map((cat) => {
+          return cat.slug;
+        })
+      );
       setIsLoading(false);
     });
   }, []);
@@ -22,13 +26,18 @@ const NavBar = ({ user, isSortVisible, setIsSortVisible }) => {
   }
 
   const handleCategoryChange = (cat) => {
-    setCategory(cat);
     navigate(`/reviews/categories/${cat}`);
   };
 
   return (
     <span className="container nav">
-      <button onClick={()=>{setIsSortVisible(!isSortVisible)}}>{isSortVisible ? `hide sort` : `show sort`}</button>
+      <button
+        onClick={() => {
+          setIsSortVisible(!isSortVisible);
+        }}
+      >
+        {isSortVisible ? `hide sort` : `show sort`}
+      </button>
       <span>
         <select
           value={category}
@@ -36,8 +45,8 @@ const NavBar = ({ user, isSortVisible, setIsSortVisible }) => {
         >
           {categories.map((category, index) => {
             return (
-              <option key={index} value={category.slug}>
-                {category.slug}
+              <option key={index} value={category}>
+                {category}
               </option>
             );
           })}
