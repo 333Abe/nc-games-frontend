@@ -31,7 +31,7 @@ const LogIn = ({ user, setUser }) => {
       </select>
       <p>{user !== "" ? `` : `user is not logged in`}</p>
       {users.map((selectedUser, index) => {
-        if (selectedUser.username === user)
+        if (selectedUser.username === user) {
           return (
             <section key={index}>
               <p>Welcome back {selectedUser.name}</p>
@@ -42,6 +42,9 @@ const LogIn = ({ user, setUser }) => {
               />
             </section>
           );
+        } else {
+          return null;
+        }
       })}
     </main>
   );
